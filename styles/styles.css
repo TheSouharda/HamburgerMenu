@@ -52,7 +52,7 @@ header {
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
   display: block;
-  background-color: white;
+  background: white;
   height: 2px;
   width: 2em;
   border-radius: 2em;
@@ -62,7 +62,7 @@ header {
 .nav-toggle-label span::before,
 .nav-toggle-label span::after {
   content: "";
-  psoition: absolute;
+  position: absolute;
 }
 
 .nav-toggle-label span::before {
@@ -82,7 +82,7 @@ nav {
   width: 100%;
   transform: scale(1, 0);
   transform-origin: top;
-  transition: 400ms ease-in-out;
+  transition: transform 400ms ease-in-out;
 }
 
 nav ul {
@@ -120,4 +120,69 @@ nav a:hover {
   transition: opacity 250ms ease-in-out 250ms;
 
   /*! This transition helps to open the links */
+}
+
+/* ? CSS styling for Large Media screen */
+
+@media screen and (min-width: 800px) {
+  .nav-toggle-label {
+    display: none;
+  }
+
+  header {
+    display: grid;
+    grid-template-columns: 1fr auto minmax(600px, 3fr) 1fr;
+  }
+
+  .Logo {
+    grid-column: 2 / 3;
+  }
+
+  nav {
+    /* all: unset; */ /*! unsets all the css we applied before but we are not using it here becuase its not supported in Edge*/
+    position: relative;
+    text-align: left;
+    transition: none;
+    transform: scale(1, 1);
+    background: none;
+    top: initial;
+    left: initial;
+
+    grid-column: 3 / 4;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+
+  nav a {
+    opacity: 1;
+    position: relative;
+  }
+
+  nav ul {
+    display: flex;
+  }
+
+  nav li {
+    margin-left: 3em;
+    margin-bottom: 0;
+  }
+
+  nav a::before {
+    content: "";
+    display: block;
+    height: 5px;
+    background: black;
+    position: absolute;
+    bottom: -1.6em;
+    left: 0;
+    right: 0em;
+    transform: scale(0, 1);
+    transform-origin: left;
+    transition: transform ease-in-out 250ms;
+  }
+
+  nav a:hover::before {
+    transform: scale(1, 1);
+  }
 }
